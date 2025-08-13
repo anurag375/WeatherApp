@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weather & Air Quality</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Chart.js for the temperature line graph -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+
+  <!-- Our app logic -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">⛅ WeatherNow</div>
+    <form id="search-form" class="search">
+      <input
+        id="location-input"
+        type="text"
+        placeholder="Search by city, pin code, or lat,lon (e.g., 28.6,77.2)"
+        required
+        aria-label="Location"
+      />
+      <button type="submit">Search</button>
+    </form>
+  </header>
+
+  <main class="container">
+    <!-- CURRENT SUMMARY -->
+    <section class="panel current">
+      <div class="current-top">
+        <div class="place-time">
+          <h2 id="place-name">—</h2>
+          <div id="localtime" class="subtle">—</div>
+        </div>
+        <div class="current-temp">
+          <img id="current-icon" alt="" />
+          <div>
+            <div id="current-temp">—°</div>
+            <div id="current-cond" class="subtle">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="current-stats">
+        <div><span>Feels like</span><strong id="feelslike">—°</strong></div>
+        <div><span>Humidity</span><strong id="humidity">—%</strong></div>
+        <div><span>Wind</span><strong id="wind">—</strong></div>
+        <div><span>UV</span><strong id="uv">—</strong></div>
+        <div><span>Precip</span><strong id="precip">—</strong></div>
+        <div><span>Pressure</span><strong id="pressure">—</strong></div>
+      </div>
+    </section>
+
+    <!-- AQI -->
+    <section class="panel aqi">
+      <div class="panel-title">
+        <h3>Air Quality</h3>
+        <span id="aqi-badge" class="badge">—</span>
+      </div>
+      <div class="aqi-grid">
+        <div class="aqi-block">
+          <div class="label">US EPA Index</div>
+          <div id="us-epa" class="value">—</div>
+          <div id="us-epa-desc" class="desc">—</div>
+        </div>
+        <div class="aqi-block">
+          <div class="label">UK DEFRA Index</div>
+          <div id="gb-defra" class="value">—</div>
+          <div id="gb-defra-desc" class="desc">—</div>
+        </div>
+        <div class="aqi-specs">
+          <div><span>PM2.5</span><strong id="pm2_5">—</strong></div>
+          <div><span>PM10</span><strong id="pm10">—</strong></div>
+          <div><span>O₃</span><strong id="o3">—</strong></div>
+          <div><span>NO₂</span><strong id="no2">—</strong></div>
+          <div><span>SO₂</span><strong id="so2">—</strong></div>
+          <div><span>CO</span><strong id="co">—</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORECAST & CHART -->
+    <section class="panel forecast">
+      <div class="panel-title">
+        <h3>Hourly Forecast (Today + Next 3 Days)</h3>
+      </div>
+
+      <!-- Day tabs -->
+      <div id="day-tabs" class="tabs"></div>
+
+      <!-- Chart -->
+      <div class="chart-wrap">
+        <canvas id="tempChart" aria-label="Hourly temperature line chart"></canvas>
+      </div>
+
+      <!-- Hourly cards for the selected day -->
+      <div id="hour-cards" class="hour-cards"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <span>Data by WeatherAPI.com</span>
+  </footer>
+</body>
+</html>
