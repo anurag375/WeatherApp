@@ -283,6 +283,6 @@ form.addEventListener("submit", (e) => {
 // Default: try a starter city from your example
 window.addEventListener("DOMContentLoaded", () => {
   // You can change the default to your city if you like
-  input.value = "London";
+  input.value = "Jamshedpur";
   loadLocation(input.value);
 });
