@@ -152,7 +152,7 @@ function renderTabsAndHours(forecastDays){
   dayTabsEl.innerHTML = "";
   hourCardsEl.innerHTML = "";
 
-  forecastDays.slice(0,4).forEach((fd, idx) => {
+  forecastDays.slice(0,3).forEach((fd, idx) => {
     const btn = document.createElement("button");
     btn.className = `tab ${idx===0 ? "active":""}`;
     btn.textContent = dayTitle(fd.date);
@@ -250,7 +250,7 @@ function updateChartForDay(forecastDay){
 
 // ===== API Fetch =====
 async function fetchWeather(q){
-  const url = `${BASE}?key=${API_KEY}&q=${encodeURIComponent(q)}&days=4&aqi=yes&alerts=no`;
+  const url = `${BASE}?key=${API_KEY}&q=${encodeURIComponent(q)}&days=3&aqi=yes&alerts=no`;
   const res = await fetch(url);
   if (!res.ok){
     const errText = await res.text();
