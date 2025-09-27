@@ -1,4 +1,4 @@
-# Weather Now
+# Weather Now | [Live Link](https://anurag375.github.io/WeatherApp/)
 
 WeatherNow is a sleek and intuitive weather application designed to provide real-time weather updates for any location worldwide. With a user-friendly interface and accurate data powered by trusted weather APIs, WeatherNow helps you plan your day with confidence.
 
