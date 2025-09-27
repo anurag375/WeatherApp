@@ -9,7 +9,7 @@
   <!-- Chart.js for the temperature line graph -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
 
-  <!-- Our app logic -->
+  
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -28,7 +28,7 @@
   </header>
 
   <main class="container">
-    <!-- CURRENT SUMMARY -->
+    <!-- CURRENT WEATHER info... -->
     <section class="panel current">
       <div class="current-top">
         <div class="place-time">
@@ -53,7 +53,7 @@
       </div>
     </section>
 
-    <!-- AQI -->
+    <!-- AQI... -->
     <section class="panel aqi">
       <div class="panel-title">
         <h3>Air Quality</h3>
@@ -81,21 +81,21 @@
       </div>
     </section>
 
-    <!-- FORECAST & CHART -->
+    <!-- FORECAST & CHART... -->
     <section class="panel forecast">
       <div class="panel-title">
         <h3>Hourly Forecast (Today + Next 2 Days)</h3>
       </div>
 
-      <!-- Day tabs -->
+      
       <div id="day-tabs" class="tabs"></div>
 
-      <!-- Chart -->
+      
       <div class="chart-wrap">
         <canvas id="tempChart" aria-label="Hourly temperature line chart"></canvas>
       </div>
 
-      <!-- Hourly cards for the selected day -->
+      
       <div id="hour-cards" class="hour-cards"></div>
     </section>
   </main>
