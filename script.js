@@ -1,9 +1,9 @@
 // ===== CONFIG =====
 const API_KEY = "74d93a5aa4ee476188282039251308";
-// We'll use the Forecast endpoint to get hourly data for 4 days.
+ 
 const BASE = "https://api.weatherapi.com/v1/forecast.json";
 
-// DOM refs
+
 const form = document.getElementById("search-form");
 const input = document.getElementById("location-input");
 
@@ -38,11 +38,12 @@ const hourCardsEl = document.getElementById("hour-cards");
 // Chart.js instance holder
 let tempChart;
 
-// ===== Utilities =====
+// =====================
+// Utilities
 const pad = (n) => String(n).padStart(2, "0");
 
 function epaLabel(i){
-  // 1 Good, 2 Moderate, 3 Unhealthy for sensitive groups, 4 Unhealthy, 5 Very Unhealthy, 6 Hazardous
+  
   const map = {
     1: "Good",
     2: "Moderate",
@@ -61,7 +62,7 @@ function epaClass(i){
   return "";
 }
 
-function defraLabel(i){
+function defraLabel(i){  // (it's scale is from 1 to 10...)
   // 1-3 Low, 4-6 Moderate, 7-9 High, 10 Very High
   if (!i && i !== 0) return "—";
   if (i <= 3) return "Low";
@@ -85,7 +86,7 @@ function httpsIcon(url){
   return url.startsWith("//") ? `https:${url}` : url.replace("http://","https://");
 }
 function toLocalTimeStr(dtStr){
-  // dtStr from API is local to the location, already human-friendly (YYYY-MM-DD HH:MM)
+  // 
   const [d, t] = dtStr.split(" ");
   const [y, m, dd] = d.split("-").map(Number);
   const [hh, mm] = t.split(":").map(Number);
@@ -94,7 +95,7 @@ function toLocalTimeStr(dtStr){
   return date.toLocaleString(undefined, opts);
 }
 function shortHourLabel(dtStr){
-  // returns "HH:MM" or "DD MMM HH:MM" if day boundary helpful
+  // returns "HH:MM" or "DD MMM HH:MM" 
   const [d, t] = dtStr.split(" ");
   const [hh, mm] = t.split(":");
   return `${hh}:${mm}`;
@@ -110,7 +111,8 @@ function dayTitle(dateStr){
   return d.toLocaleDateString(undefined, { weekday:"short", month:"short", day:"numeric" });
 }
 
-// ===== Rendering =====
+// =====================
+// Rendering
 function renderCurrent(current, location){
   placeNameEl.textContent = `${location.name}, ${location.region || location.country}`;
   localtimeEl.textContent = `Local time: ${toLocalTimeStr(location.localtime)}`;
@@ -128,7 +130,7 @@ function renderCurrent(current, location){
 }
 
 function renderAQI(air){
-  // air has keys: co, no2, o3, so2, pm2_5, pm10, "us-epa-index", "gb-defra-index"
+  // air has keys: 
   const us = air["us-epa-index"];
   const gb = air["gb-defra-index"];
 
@@ -248,7 +250,8 @@ function updateChartForDay(forecastDay){
   });
 }
 
-// ===== API Fetch =====
+// =====================
+// API Fetch
 async function fetchWeather(q){
   const url = `${BASE}?key=${API_KEY}&q=${encodeURIComponent(q)}&days=3&aqi=yes&alerts=no`;
   const res = await fetch(url);
@@ -259,7 +262,8 @@ async function fetchWeather(q){
   return res.json();
 }
 
-// ===== App init =====
+// =====================
+// App init
 async function loadLocation(query){
   try{
     const data = await fetchWeather(query);
@@ -280,9 +284,9 @@ form.addEventListener("submit", (e) => {
   loadLocation(q);
 });
 
-// Default: try a starter city from your example
+// Default search...
 window.addEventListener("DOMContentLoaded", () => {
-  // You can change the default to your city if you like
+  
   input.value = "Jamshedpur";
   loadLocation(input.value);
 });
